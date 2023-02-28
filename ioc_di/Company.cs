@@ -34,60 +34,60 @@ using System.Threading.Tasks;
 
 //}
 
-//namespace ioc_di
-//{
-
-//    /// 
-//    ///Dependancy injection - Company depends on events
-//    ///Contstructor injection
-//    /// 
-
-//    public class Company
-//    {
-//        private IEvent _events = null;
-//        public Company(IEvent ie) //contstructor injection
-//        {
-//            _events = ie;
-//        }
-
-//        public void GetEvents()
-//        {
-//            _events.EventDetail();
-//        }
-//    }
-
-//}
-
-
 namespace ioc_di
 {
 
     /// 
     ///Dependancy injection - Company depends on events
-    ///Property injection
+    ///Contstructor injection
     /// 
 
     public class Company
     {
         private IEvent _events = null;
-        
-        public IEvent MyEvent
+        public Company(IEvent ie) //contstructor injection
         {
-            set
-            {
-                _events = value;
-            }           
+            _events = ie;
         }
 
         public void GetEvents()
         {
             _events.EventDetail();
         }
-
-
     }
 
 }
+
+
+//namespace ioc_di
+//{
+
+    /// 
+    ///Dependancy injection - Company depends on events
+    ///Property injection
+    /// 
+
+    //public class Company
+    //{
+    //    private IEvent _events = null;
+        
+    //    public IEvent MyEvent
+    //    {
+    //        set
+    //        {
+    //            _events = value;
+    //        }           
+    //    }
+
+    //    public void GetEvents()
+    //    {
+    //        _events.EventDetail();
+    //    }
+
+
+    //}
+
+//}
 
 
 //namespace ioc_di

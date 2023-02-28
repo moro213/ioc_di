@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace ioc_di
 {
@@ -6,11 +7,16 @@ namespace ioc_di
     {
         static void Main(string[] args)
         {
-            Company cp = new Company();
+            //Dependancy injection - microsoft extension could use Autofac for example...
+            ServiceCollection sc = new ServiceCollection();
+            sc.AddSingleton<IEvent,TechEvents>();
+            ServiceProvider sp = sc.BuildServiceProvider();
 
-            TechEvents Te = new TechEvents();
-            CarEvents Ce = new CarEvents();
-            RandomEvents Re = new RandomEvents();
+            //Company cp = new Company();
+
+            //TechEvents Te = new TechEvents();
+            //CarEvents Ce = new CarEvents();
+            //RandomEvents Re = new RandomEvents();
 
             ///
             ///Tight coupling example
@@ -24,8 +30,8 @@ namespace ioc_di
             ///Contstructor injection
             ///
 
-            //Company c = new Company(Ce);
-            //c.GetEvents();
+            Company c = new Company(sp.GetService<IEvent>());
+            c.GetEvents();
 
             //---------------------------------------------------------------------------------------
 
@@ -33,8 +39,8 @@ namespace ioc_di
             ///Property injection
             ///
 
-            cp.MyEvent = new RandomEvents();
-            cp.GetEvents();
+            //cp.MyEvent = new RandomEvents();
+            //cp.GetEvents();
             //---------------------------------------------------------------------------------------
 
             ///
